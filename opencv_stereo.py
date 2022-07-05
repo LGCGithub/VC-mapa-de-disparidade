@@ -29,7 +29,7 @@ for filename in directory:
     except:
         info_imgs.append({})
 
-stereo = cv.StereoBM_create(numDisparities=256, blockSize=9)
+stereo = cv.StereoBM_create(numDisparities=256, blockSize=5)
 
 # branco = perto
 # preto = longe
@@ -47,8 +47,8 @@ for index in range(0, len(left_imgs)):
     # Tentativa de deixar o mapa mais suave, borrando
     #disparity = cv.GaussianBlur(disparity, ksize=(21, 21), sigmaX=0)
 
-    cv.imshow("left", left_imgs[index])
-    cv.imshow("right", right_imgs[index])
-    cv.imshow("disparity map", disparity)
+    cv.imshow("left", cv.resize(left_imgs[index], (800, 600)))
+    cv.imshow("right", cv.resize(right_imgs[index], (800, 600)))
+    cv.imshow("disparity map", cv.resize(disparity, (800, 600)))
     
     cv.waitKey(0)
